@@ -4,7 +4,7 @@ import ColorForm from "./Components/ColorForm/ColorForm";
 import Color from "./Components/Color/Color";
 import "./App.css";
 
-function App() {
+export default function App() {
   const [colors, setColors] = useState(initialColors);
 
   const handleAddColor = (newColor) => {
@@ -23,5 +23,3 @@ function App() {
     </>
   );
 }
-
-export default App;
