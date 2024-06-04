@@ -1,22 +1,21 @@
-import { useState } from "react";
-
-export default function ColorInput({ id, defaultValue }) {
-  const [inputValue, setInputValue] = useState(defaultValue);
-
-  function handleInputValue(event) {
-    setInputValue(event.target.value);
-  }
-
+export default function ColorInput({ label, value, onChange, colorType }) {
   return (
-    <>
+    <div className="color-input">
+      <label htmlFor={colorType}>{label}</label>
+      <br />
       <input
         type="text"
-        id={id}
-        name={id}
-        value={inputValue}
-        onChange={handleInputValue}
+        id={colorType}
+        name={colorType}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
       />
-      <input type="color" value={inputValue} onChange={handleInputValue} />
-    </>
+      <input
+        type="color"
+        id={`${colorType}-picker`}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+      />
+    </div>
   );
 }

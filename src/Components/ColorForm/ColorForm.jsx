@@ -3,43 +3,42 @@ import { nanoid } from "nanoid";
 import ColorInput from "../ColorInput/ColorInput";
 
 export default function ColorForm({ onAddColor }) {
-  const [role, setRole] = useState("primary color");
+  const [role, setRole] = useState("primary");
   const [hex, setHex] = useState("#ffffff");
   const [contrastText, setContrastText] = useState("#000000");
 
   const handleSubmit = (e) => {
-    e.preventDevfault();
-    onAddColor({ id: nanoid(), role, hex, contrastText });
+    e.preventDefault();
+    const newColor = {
+      id: nanoid(),
+      role,
+      hex,
+      contrastText,
+    };
+    onAddColor(newColor);
     setRole("primary");
     setHex("#ffffff");
     setContrastText("#000000");
   };
 
   return (
-    <form onSubmit={handleSubmit} className="color-form">
+    <form onSubmit={handleSubmit}>
       <label htmlFor="role">Role:</label>
-      <br />
       <input
         type="text"
         id="role"
-        name="role"
         value={role}
         onChange={(e) => setRole(e.target.value)}
+        placeholder="e.g. primary, secondary"
       />
-      <br />
-      <label htmlFor="hex">Hex:</label>
-      <br />
-      <ColorInput id="hex" onChange={setHex} value={hex} />
-      <br />
-      <label htmlFor="contrast-text">Contrast Text:</label>
-      <br />
+      <ColorInput label="Hex:" value={hex} onChange={setHex} colorType="hex" />
       <ColorInput
-        id="contrast-text"
-        onChange={setContrastText}
+        label="Contrast Text:"
         value={contrastText}
+        onChange={setContrastText}
+        colorType="contrastText"
       />
-      <br />
-      <button>ADD COLOR</button>
+      <button type="submit">Add Color</button>
     </form>
   );
 }

@@ -5,19 +5,21 @@ import Color from "./Components/Color/Color";
 import "./App.css";
 
 function App() {
-  const [colors, setColors] = useState([]);
+  const [colors, setColors] = useState(initialColors);
 
   const handleAddColor = (newColor) => {
-    setColors([...colors, newColor]);
+    setColors([newColor, ...colors]);
   };
+
   return (
     <>
       <h1>Theme Creator</h1>
       <ColorForm onAddColor={handleAddColor} />
-
-      {initialColors.map((color) => {
-        return <Color key={color.id} color={color} />;
-      })}
+      <div className="color-list">
+        {colors.map((color) => (
+          <Color key={color.id} color={color} />
+        ))}
+      </div>
     </>
   );
 }
