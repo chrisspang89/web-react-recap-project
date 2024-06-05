@@ -1,9 +1,20 @@
 import "./Color.css";
 import Button from "../Button/Button";
+import ColorForm from "../ColorForm/ColorForm";
 import { useState } from "react";
 
-export default function Color({ color, onDelete }) {
+export default function Color({
+  color,
+  onDelete,
+  onEdit,
+  isEditting,
+  onUpdate,
+}) {
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+
+  const handleCloseEdit = () => {
+    onEdit(null);
+  };
 
   return (
     <div
@@ -31,6 +42,13 @@ export default function Color({ color, onDelete }) {
             text="Delete"
             onButtonClick={() => setShowDeleteConfirmation(true)}
           />
+          <Button text="Edit" onButtonClick={() => onEdit(color.id)} />
+          {isEditting && (
+            <>
+              <ColorForm color={color} onUpdate={onUpdate} isEditMode={true} />
+              <Button text="Close" onButtonClick={handleCloseEdit} />
+            </>
+          )}
         </>
       )}
     </div>
