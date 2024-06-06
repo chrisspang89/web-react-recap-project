@@ -1,6 +1,7 @@
 import "./Color.css";
 import Button from "../Button/Button";
 import ColorForm from "../ColorForm/ColorForm";
+import CopyToClipboard from "../CopyToClipboard/CopyToClipboard";
 import { useState } from "react";
 
 export default function Color({
@@ -25,6 +26,7 @@ export default function Color({
       }}
     >
       <h3 className="color-card-headline">{color.hex}</h3>
+      <CopyToClipboard hex={color.hex} />
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
       {showDeleteConfirmation ? (
