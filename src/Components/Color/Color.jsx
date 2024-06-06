@@ -2,7 +2,10 @@ import "./Color.css";
 import Button from "../Button/Button";
 import ColorForm from "../ColorForm/ColorForm";
 import CopyToClipboard from "../CopyToClipboard/CopyToClipboard";
+
 import ContrastChecker from "../ContrastChecker/ContrastChecker";
+
+
 import { useState } from "react";
 
 export default function Color({
